@@ -25,7 +25,7 @@ var myBot = controller.spawn({
   }
 }).startRTM()
 
-controller.setupWebserver(3001, function(err, webserver) {
+controller.setupWebserver(3002, function(err, webserver) {
   controller.createWebhookEndpoints(webserver);
 });
 
