@@ -6,6 +6,7 @@ var request = require('request');
 var fs = require("fs");
 var Promise = require('bluebird');
 var parse = require('parse-link-header');
+var projectName;
 
 var urlRoot = "http://localhost:8080/SpringMVC/decisioncontroller/executecommand/";
 //var childProcess = require("child_process");
@@ -50,7 +51,8 @@ getNewProjectName = function(response, convo){
 		
 		convo.say(obj.responseMessage);
 		convo.ask("What is the name of the project you would like to switch to?", function(response, convo) {
-			command = "cp_" + response.text;
+			projectName = response.text
+			command = "cp_" + projectName;
 			options = getOption(command);
             
 			request(options, function (error, response, body) 
@@ -131,7 +133,7 @@ listDependency = function(response, convo){
     //convo.say("dependencyGroup:artifactID:currentVersion:newerVersions");
 	// Making call to the REST Service
 	var reply = "";
-	var command = "ld";
+	var command = "ld_" + projectName ;
 	var options = getOption(command);
 	// Send a http request to url and specify a callback that will be called upon its return.
 	request(options, function (error, response, body) 
@@ -154,7 +156,7 @@ controller.hears('(Check(.*)updat)|(updat(.*)dep)|(updat)',['direct_message', 'm
 updateDependency = function(response, convo){
 	// Making call to the REST Service
 	var reply = "";
-	var command = "up";
+	var command = "up_" + projectName;
 	var options = getOption(command);
 	//command = "ls";
 	// Send a http request to url and specify a callback that will be called upon its return.
