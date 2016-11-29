@@ -7,6 +7,7 @@ var fs = require("fs");
 var Promise = require('bluebird');
 var parse = require('parse-link-header');
 var projectName;
+var grabToken = process.argv.slice(2)
 
 var urlRoot = "http://localhost:8080/SpringMVC/decisioncontroller/executecommand/";
 //var childProcess = require("child_process");
@@ -20,7 +21,7 @@ var controller = Botkit.slackbot({
 
 // connect the bot to a stream of messages
 var myBot = controller.spawn({
-  token: process.argv.slice(2),
+  token: grabtoken[0],
   incoming_webhook: {
 	url:  "https://hooks.slack.com/services/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"
   }
