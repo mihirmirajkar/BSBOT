@@ -172,7 +172,7 @@ updateDependency = function(response, convo){
             //insert check here for if updates available or not
 		convo.ask("Which dependency would you like to update? " + 
                         "Please enter the number of the dependency.", function(response, convo) {
-			command = "up_"+response.text;
+			command = "upversion_"+response.text;
 			options = getOption(command);
 			request(options, function (error, response, body) 
 			{
